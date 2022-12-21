@@ -1,18 +1,14 @@
 const core = require('@actions/core');
-const wait = require('./wait');
-
+const github = require('@actions/github');
 
 // most @actions toolkit packages have async methods
 async function run() {
   try {
-    const ms = core.getInput('milliseconds');
-    core.info(`Waiting ${ms} milliseconds ...`);
-
-    core.debug((new Date()).toTimeString()); // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
-    await wait(parseInt(ms));
-    core.info((new Date()).toTimeString());
-
-    core.setOutput('time', new Date().toTimeString());
+    console.log("hello world!")
+    const repoOwner = github.context.repo.owner;
+    const repo = github.context.repo.repo;
+    const actor = github.context.actor;    
+    console.log(`found: ${repoOwner} ${repo} ${actor}!`);    
   } catch (error) {
     core.setFailed(error.message);
   }
