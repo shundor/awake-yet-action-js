@@ -2,10 +2,11 @@ name: Example Action
 
 on:
   issues:
-    types: [opened]
+  issue_comment:
+    types: [created, edited]
   pull_request:
-    branches: [main]
-    types: [opened]
+  pull_request_review_comment:
+    types: [created, edited]
 
 jobs:
   comment:
