@@ -9696,9 +9696,7 @@ async function run() {
     const actor = github.context.actor;
     console.log(`found: ${repoOwner} ${repo} ${actor}!`);
     const expected_events = ['opened', 'edited', 'reopened', 'created', 'submitted'];
-    console.log("Full event\n" + github.event)
-    console.log("Action:\n" + github.event.action)
-    console.log("Issue:\n" + github.event.issue)
+    console.log("Full action\n" + github.context.action)
     if (expected_events.includes(github.event.action) && github.event.issue) {
       // Issue details
       console.log('Conditional for payload fired - issues')
