@@ -59812,7 +59812,6 @@ var issue_number = '';
 var date_time = '';
 var date_string = '';
 
-// most @actions toolkit packages have async methods
 async function run() {
   try {
     console.log("hello world!")
