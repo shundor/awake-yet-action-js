@@ -4,6 +4,7 @@ const Geocoder = require('node-geocoder');
 const dotenv = require('dotenv');
 dotenv.config();
 const axios = require('axios').default;
+const util = require('util')
 // Create variables for future values
 var user = '';
 var person = '';
@@ -16,7 +17,11 @@ var date_string = '';
 
 async function run() {
   try {
-    console.log("hello world!")
+    console.log("hello world!"+ github.event_name)
+    console.log(util.inspect(github.event, {
+      depth: null
+    }));
+    console.log(JSON.stringify(github.event, null, 2));
     const repoOwner = github.context.repo.owner;
     const repo = github.context.repo.repo;
     const actor = github.context.actor;
