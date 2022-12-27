@@ -59815,11 +59815,13 @@ var date_string = '';
 
 async function run() {
   try {
+    const context = github.context;
+    console.log("github context"+ github.context)
     console.log("hello world!"+ github.event_name)
-    console.log(util.inspect(github.event, {
+    console.log(util.inspect(github.context, {
       depth: null
     }));
-    console.log(JSON.stringify(github.event, null, 2));
+    console.log(JSON.stringify(github.context, null, 2));
     const repoOwner = github.context.repo.owner;
     const repo = github.context.repo.repo;
     const actor = github.context.actor;
