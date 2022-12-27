@@ -59802,6 +59802,7 @@ const Geocoder = __nccwpck_require__(1455);
 const dotenv = __nccwpck_require__(2437);
 dotenv.config();
 const axios = __nccwpck_require__(6545).default;
+const util = __nccwpck_require__(1669)
 // Create variables for future values
 var user = '';
 var person = '';
@@ -59814,7 +59815,11 @@ var date_string = '';
 
 async function run() {
   try {
-    console.log("hello world!")
+    console.log("hello world!"+ github.event_name)
+    console.log(util.inspect(github.event, {
+      depth: null
+    }));
+    console.log(JSON.stringify(github.event, null, 2));
     const repoOwner = github.context.repo.owner;
     const repo = github.context.repo.repo;
     const actor = github.context.actor;
