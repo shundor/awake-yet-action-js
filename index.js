@@ -14,7 +14,6 @@ var issue_number = '';
 var date_time = '';
 var date_string = '';
 
-// most @actions toolkit packages have async methods
 async function run() {
   try {
     console.log("hello world!")
@@ -30,7 +29,7 @@ async function run() {
       user = github.event.issue.user.login
       body = github.event.issue.body
       issue_number = github.event.issue.number
-    } else if (expected_events.includes(github.event.payload.action) && github.event.payload.pull_request) {
+    } else if (expected_events.includes(github.event.action) && github.event.payload.pull_request) {
       // Pull Request details
       console.log('Conditional for payload fired - pull_request')
       user = github.event.pull_request.user.login
