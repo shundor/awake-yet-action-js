@@ -49,3 +49,10 @@ jobs:
         with:
           name: dist
           path: dist/
+
+      - uses: stefanzweifel/git-auto-commit-action@v4  
+        if: ${{ failure() && steps.diff.conclusion == 'failure' }}      
+        with:    
+          commit_message: Add dist/index.js
+          file_pattern: dist/*.*
+          push_options: '--force'
