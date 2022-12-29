@@ -62,13 +62,9 @@ async function run() {
       //console.log(JSON.stringify(question_arr, null, 2));
       //console.log(`found: ${person}!`);
       person_info = (await tools.rest.users.getByUsername({
-        username: "@abirismyname"
-      })).data;
-      const person_info2 = (await tools.rest.users.getByUsername({
         username: "abirismyname"
       })).data;
       console.log(JSON.stringify(person_info, null, 2));
-      console.log(JSON.stringify(person_info2, null, 2));
       // Get the location specified in their profile
       user_location = person_info.location;
       console.log(`found: ${person_info} ${user_location}!`);
