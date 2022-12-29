@@ -32,6 +32,7 @@ async function run() {
       console.log('Conditional for payload fired - issues')
       user = context.payload.comment.user.login
       body = context.payload.comment.body
+      issue_number = context.payload.issue.number
     } else if (expected_events.includes(context.payload.action) && context.eventName.includes("pull_request")) {
       // Pull Request details
       console.log('Conditional for payload fired - pull_request')
@@ -96,7 +97,7 @@ async function run() {
         // print out url        
         console.log(`https://maps.googleapis.com/maps/api/timezone/json?location=${geocode_data[0]['latitude']},${geocode_data[0]['longitude']}&timestamp=${timestamp}&key=${process.env.GOOGLE_API_KEY}`)
         const timeZoneData = (await getTimezoneData()).data;
-        console.log(`timeZoneData ${timeZoneData} !`);
+        console.log(`timeZoneData ${JSON.stringify(timeZoneData)} !`);
         // Assign the date and time in the user's location to the date_time variable
         const local_timestamp = timestamp + + timeZoneData['dstOffset'] + timeZoneData['rawOffset'];
         date_time = new Date(local_timestamp * 1000);
