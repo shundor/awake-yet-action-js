@@ -21,3 +21,4 @@ jobs:
         uses: shundor/awake-yet-action-js@breton
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          GOOGLE_API_KEY: "${{ secrets.GOOGLE_API_KEY }}"
