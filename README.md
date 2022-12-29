@@ -2,7 +2,7 @@
 
 Check a teammate's timezone and see if they're awake!
 
- ![](https://github.com/shundor/awake-yet-action-js/workflows/tests/badge.svg) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+ ![](https://github.com/shundor/awake-yet-action-js/workflows/test/badge.svg) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 ## About
 
