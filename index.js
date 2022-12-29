@@ -102,7 +102,7 @@ async function run() {
         // Assign the date and time in the user's location to the date_time variable
         const local_timestamp = timestamp + + timeZoneData['dstOffset'] + timeZoneData['rawOffset'];
         date_time = new Date(local_timestamp * 1000);
-        const date_string = moment(date_time).format('MMMM Do YYYY, h:mm a');
+        date_string = moment(date_time).format('MMMM Do YYYY, h:mm a');
         console.log(date_string);  // Output: "January 1, 2022 12:00"
 
         const responseMsg = `
