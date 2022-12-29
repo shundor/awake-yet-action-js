@@ -59860,11 +59860,7 @@ async function run() {
       person_info = (await tools.rest.users.getByUsername({
         username: "@abirismyname"
       })).data;
-<<<<<<< HEAD
       const person_info2 = (await tools.rest.users.getByUsername({
-=======
-      person_info2 = (await tools.rest.users.getByUsername({
->>>>>>> 0392e79a5ec4386be1efffccaf208e81b4fbab3d
         username: "abirismyname"
       })).data;
       console.log(JSON.stringify(person_info, null, 2));
