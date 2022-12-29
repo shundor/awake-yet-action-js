@@ -1,116 +1,76 @@
-# Create a JavaScript Action
+# Awake Yet?
 
-<p align="center">
-  <a href="https://github.com/actions/javascript-action/actions"><img alt="javscript-action status" src="https://github.com/actions/javascript-action/workflows/units-test/badge.svg"></a>
-</p>
+Check a teammate's timezone and see if they're awake!
 
-Use this template to bootstrap the creation of a JavaScript action.:rocket:
+ ![](https://github.com/shundor/awake-yet-action-js/workflows/tests/badge.svg) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-This template includes tests, linting, a validation workflow, publishing, and versioning guidance.
+## About
 
-If you are new, there's also a simpler introduction.  See the [Hello World JavaScript Action](https://github.com/actions/hello-world-javascript-action)
-
-## Create an action from this template
-
-Click the `Use this Template` and provide the new repo details for your action
-
-## Code in Main
-
-Install the dependencies
-
-```bash
-npm install
-```
-
-Run the tests :heavy_check_mark:
-
-```bash
-$ npm test
-
- PASS  ./index.test.js
-  ✓ throws invalid number (3ms)
-  ✓ wait 500 ms (504ms)
-  ✓ test runs (95ms)
-...
-```
-
-## Change action.yml
-
-The action.yml defines the inputs and output for your action.
-
-Update the action.yml with your name, description, inputs and outputs for your action.
-
-See the [documentation](https://help.github.com/en/articles/metadata-syntax-for-github-actions)
-
-## Change the Code
-
-Most toolkit and CI/CD operations involve async operations so the action is run in an async function.
-
-```javascript
-const core = require('@actions/core');
-...
-
-async function run() {
-  try {
-      ...
-  }
-  catch (error) {
-    core.setFailed(error.message);
-  }
-}
-
-run()
-```
-
-See the [toolkit documentation](https://github.com/actions/toolkit/blob/master/README.md#packages) for the various packages.
-
-## Package for distribution
-
-GitHub Actions will run the entry point from the action.yml. Packaging assembles the code into one file that can be checked in to Git, enabling fast and reliable execution and preventing the need to check in node_modules.
-
-Actions are run from GitHub repos.  Packaging the action will create a packaged action in the dist folder.
-
-Run prepare
-
-```bash
-npm run prepare
-```
-
-Since the packaged index.js is run from the dist folder.
-
-```bash
-git add dist
-```
-
-## Create a release branch
-
-Users shouldn't consume the action from master since that would be latest code and actions can break compatibility between major versions.
-
-Checkin to the v1 release branch
-
-```bash
-git checkout -b v1
-git commit -a -m "v1 release"
-```
-
-```bash
-git push origin v1
-```
-
-Note: We recommend using the `--license` option for ncc, which will create a license file for all of the production node modules used in your project.
-
-Your action is now published! :rocket:
-
-See the [versioning documentation](https://github.com/actions/toolkit/blob/master/docs/action-versioning.md)
+This action allows you to check a teammate's timezone via an issue or PR comment.
 
 ## Usage
 
-You can now consume the action by referencing the v1 branch
+In your workflow, to create a new discussion, include a step like this:
 
 ```yaml
-uses: actions/javascript-action@v1
-with:
-  milliseconds: 1000
+name: Example Action
+
+on:
+  issue_comment:
+    types: [created, edited]
+    branches:
+      - main     
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Comment
+        id: awake-yet-action-js
+        uses: shundor/awake-yet-action-js@main
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          GOOGLE_API_KEY: "${{ secrets.GOOGLE_API_KEY }}"          
 ```
 
-See the [actions tab](https://github.com/actions/javascript-action/actions) for runs of this action! :rocket:
+## Inputs
+
+The following secret needs to be created:
+
+- `GOOGLE_API_KEY`: The body of the discussion
+
+The following [Google Map Platform](https://console.cloud.google.com/google/maps-apis/overview) API's need to be enabled, and the API should be restricted to them:
+- Geocoding API
+- Geolocation API
+- Maps JavaScript API
+- Time Zone API
+For this action to work correctly the team must have their location set in their [GitHub Profile](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/personalizing-your-profile#setting-your-location-and-time-zone).
+
+## Outputs
+
+If successful, the issue will have a new comment with the teammate's timezone info:
+```
+    Hi there, abirismyname! 👋
+    
+
+    You asked if rufusmbugua was awake yet.
+
+    I can't tell you about their personal sleeping habits, sadly.
+
+    I can tell you though that the date and time for rufusmbugua in Nairobi, Kenya is currently:
+
+    December 29th 2022, 7:28 pm
+
+    I hope that helps clarify the matter for you!
+```    
+
+## Example
+
+This repo contains an example [workflow](https://github.com/shundor/awake-yet-action-js/blob/main/.github/workflows/example.yml) that contains this action.
+
+## Credits
+
+- :bow: Based on [bencgreenberg/awake-yet-action](https://github.com/bencgreenberg/awake-yet-action).
+- :bow: [@breton](breton) for the testing and help!
+- :bow: [@manishapriya94](manishapriya94) for inspiration!
