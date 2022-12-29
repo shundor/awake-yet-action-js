@@ -57,6 +57,8 @@ async function run() {
       );
       var question_arr = question.split(' ');
       person = question_arr[1].replace(/@/g, '');
+      console.log(JSON.stringify(question_arr, null, 2));
+      console.log(`found: ${person}!`);
       person_info = (await tools.rest.users.getByUsername({
         username: person
       })).data;
