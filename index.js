@@ -57,8 +57,8 @@ async function run() {
       );
       var question_arr = question.split(' ');
       // remove whitespace and @ from the username
+      console.log(JSON.stringify(question_arr, null, 2));
       person = question_arr[1].trim().replace('@', '');
-      //console.log(JSON.stringify(question_arr, null, 2));
       console.log(`found: ${person}!`);
       person_info = (await tools.rest.users.getByUsername({
         username: person
