@@ -51,18 +51,12 @@ async function run() {
     body = body.toLowerCase();
     if (body.includes('is') && body.includes('awake?')) {
       // If it does, get user info
-      var question = body.substring(
-        body.lastIndexOf('is'),
-        body.firstIndexOf('awake?')
-      );
-      // get substring that starts with 'is' and ends with 'awake?'
-      console.log(`found: ${question}!`);
-      console.log(`body.substring(${body.lastIndexOf('is')}, ${body.firstIndexOf('awake?')})`);
-
-      var question_arr = question.split(' ');
-      // remove whitespace and @ from the username
-      console.log(JSON.stringify(question_arr, null, 2));
-      person = question_arr[1].trim().replace('@', '');
+      const startIndex = str.indexOf('is') + 'is'.length;
+      const endIndex = str.indexOf('awake', startIndex);      
+      const subStr = str.substring(startIndex, endIndex);
+      
+      console.log(subStr);
+      person = subStr.trim().replace('@', '');
       console.log(`found: ${person}!`);
       person_info = (await tools.rest.users.getByUsername({
         username: person
