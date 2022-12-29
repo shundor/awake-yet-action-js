@@ -59849,9 +59849,9 @@ async function run() {
     body = body.toLowerCase();
     if (body.includes('is') && body.includes('awake?')) {
       // If it does, get user info
-      const startIndex = str.indexOf('is') + 'is'.length;
-      const endIndex = str.indexOf('awake', startIndex);      
-      const subStr = str.substring(startIndex, endIndex);
+      const startIndex = body.indexOf('is') + 'is'.length;
+      const endIndex = body.indexOf('awake', startIndex);      
+      const subStr = body.substring(startIndex, endIndex);
       
       console.log(subStr);
       person = subStr.trim().replace('@', '');
