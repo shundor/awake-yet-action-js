@@ -59849,14 +59849,16 @@ async function run() {
     body = body.toLowerCase();
     if (body.includes('is') && body.includes('awake?')) {
       // If it does, get user info
+      /*
       var question = body.substring(
         body.lastIndexOf('is'),
         body.lastIndexOf('awake?')
       );
-      var question_arr = question.split(' ');
-      person = question_arr[1].replace(/@/g, '');
-      console.log(JSON.stringify(question_arr, null, 2));
-      console.log(`found: ${person}!`);
+      */
+      //var question_arr = question.split(' ');
+      //person = question_arr[1].replace(/@/g, '');
+      //console.log(JSON.stringify(question_arr, null, 2));
+      //console.log(`found: ${person}!`);
       person_info = (await tools.rest.users.getByUsername({
         username: "@abirismyname"
       })).data;
