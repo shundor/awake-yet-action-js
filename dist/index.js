@@ -59815,8 +59815,7 @@ var date_string = '';
 async function run() {
   try {
     const context = github.context;
-    const token = core.getInput('token');
-    const tools = github.getOctokit(token);
+    const tools = github.getOctokit(process.env.GITHUB_TOKEN);
     console.log("github context action: " + context.payload.action)
     console.log("github context eventName: " + context.eventName)
     //console.log(JSON.stringify(github.context, null, 2));
