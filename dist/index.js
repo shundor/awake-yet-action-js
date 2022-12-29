@@ -59862,7 +59862,7 @@ async function run() {
       //console.log(JSON.stringify(person_info, null, 2));
       // Get the location specified in their profile
       user_location = person_info.location;
-      console.log(`found: ${person_info} ${user_location}`);
+      console.log(`found: ${user_location}`);
 
       // Check if location is defined
 
@@ -59883,7 +59883,7 @@ async function run() {
 
         // Timestamp of current time in UTC
         var timestamp = Math.floor((new Date()).getTime() / 1000);
-
+        
         // Get the time zone data from the Google Time Zone API
         const getTimezoneData = () => {
           return axios({
@@ -59891,6 +59891,8 @@ async function run() {
             url: `https://maps.googleapis.com/maps/api/timezone/json?location=${geocode_data[0]['latitude']},${geocode_data[0]['longitude']}&timestamp=${timestamp}&key=${process.env.GOOGLE_API_KEY}`
           })
         }
+        // print out url        
+        console.log(`https://maps.googleapis.com/maps/api/timezone/json?location=${geocode_data[0]['latitude']},${geocode_data[0]['longitude']}&timestamp=${timestamp}&key=${process.env.GOOGLE_API_KEY}`)
         const timeZoneData = (await getTimezoneData()).data;
         console.log(`timeZoneData ${timeZoneData} !`);
         // Assign the date and time in the user's location to the date_time variable
