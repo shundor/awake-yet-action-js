@@ -19,3 +19,5 @@ jobs:
       - name: Comment
         id: awake-yet-action-js
         uses: shundor/awake-yet-action-js@breton
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
