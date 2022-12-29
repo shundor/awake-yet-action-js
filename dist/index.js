@@ -59815,7 +59815,7 @@ var date_string = '';
 async function run() {
   try {
     const context = github.context;
-    const tools = github.getOctokit(process.env.GITHUB_TOKEN);
+    const tools = github.getOctokit();
     console.log("github context action" + context.payload.action)
     console.log("github context eventName" + context.eventName)
     console.log(JSON.stringify(github.context, null, 2));
@@ -59929,7 +59929,6 @@ async function run() {
         });
       }
     }
-    core.setOutput('Completed successfully!')
   } catch (error) {
     core.setFailed(error.message);
 
