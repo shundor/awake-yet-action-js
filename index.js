@@ -59,14 +59,14 @@ async function run() {
       
       console.log(subStr);
       person = subStr.trim().replace('@', '');
-      console.log(`found: ${person}`);
+      console.log(`person: ${person}`);
       person_info = (await tools.rest.users.getByUsername({
         username: person
       })).data;
       //console.log(JSON.stringify(person_info, null, 2));
       // Get the location specified in their profile
       user_location = person_info.location;
-      console.log(`found: ${user_location}`);
+      console.log(`user_location: ${user_location}`);
 
       // Check if location is defined
 
@@ -110,7 +110,7 @@ async function run() {
         \n
         You asked if ${person} was awake yet.\n
         I can't tell you about their personal sleeping habits, sadly.\n
-        I can tell you though that the date and time for ${person} is currently:\n
+        I can tell you though that the date and time for ${person} in ${user_location} is currently:\n
         ${date_string}\n
         I hope that helps clarify the matter for you!
       `;
