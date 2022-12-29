@@ -57,14 +57,14 @@ async function run() {
       
       console.log(subStr);
       person = subStr.trim().replace('@', '');
-      console.log(`found: ${person}!`);
+      console.log(`found: ${person}`);
       person_info = (await tools.rest.users.getByUsername({
         username: person
       })).data;
-      console.log(JSON.stringify(person_info, null, 2));
+      //console.log(JSON.stringify(person_info, null, 2));
       // Get the location specified in their profile
       user_location = person_info.location;
-      console.log(`found: ${person_info} ${user_location}!`);
+      console.log(`found: ${person_info} ${user_location}`);
 
       // Check if location is defined
 
