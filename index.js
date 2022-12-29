@@ -62,7 +62,7 @@ async function run() {
       person_info = (await tools.rest.users.getByUsername({
         username: "@abirismyname"
       })).data;
-      person_info2 = (await tools.rest.users.getByUsername({
+      const person_info2 = (await tools.rest.users.getByUsername({
         username: "abirismyname"
       })).data;
       console.log(JSON.stringify(person_info, null, 2));
