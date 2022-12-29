@@ -1,6 +1,7 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 const Geocoder = require('node-geocoder');
+const moment = require('moment');
 const dotenv = require('dotenv');
 dotenv.config();
 const axios = require('axios').default;
@@ -101,8 +102,8 @@ async function run() {
         // Assign the date and time in the user's location to the date_time variable
         const local_timestamp = timestamp + + timeZoneData['dstOffset'] + timeZoneData['rawOffset'];
         date_time = new Date(local_timestamp * 1000);
-        date_string = date_time.toDateString() + ' - ' + date_time.getHours() + ':' + date_time.getMinutes();
-        console.log(`local_timestamp ${local_timestamp} !`);
+        const date_string = moment(date_time).format('MMMM Do YYYY, h:mm a');
+        console.log(date_string);  // Output: "January 1, 2022 12:00"
 
         const responseMsg = `
         Hi there, ${actor}! 👋

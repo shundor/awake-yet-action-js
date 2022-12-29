@@ -25,12 +25,13 @@
   },
   "homepage": "https://github.com/actions/javascript-action#readme",
   "dependencies": {
-    "@googlemaps/google-maps-services-js": "^2.1.2",    
     "@actions/core": "^1.10.0",
     "@actions/github": "^5.1.1",
+    "@googlemaps/google-maps-services-js": "^2.1.2",
     "axios": "^0.21.2",
     "dotenv": "^8.2.0",
-    "node-geocoder": "^3.25.0"    
+    "moment": "^2.29.4",
+    "node-geocoder": "^3.25.0"
   },
   "devDependencies": {
     "@vercel/ncc": "^0.31.1",
