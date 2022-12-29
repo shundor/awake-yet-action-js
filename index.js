@@ -19,9 +19,9 @@ async function run() {
     const context = github.context;
     const token = core.getInput('token');
     const tools = github.getOctokit(token);
-    console.log("github context action" + context.payload.action)
-    console.log("github context eventName" + context.eventName)
-    console.log(JSON.stringify(github.context, null, 2));
+    console.log("github context action: " + context.payload.action)
+    console.log("github context eventName: " + context.eventName)
+    //console.log(JSON.stringify(github.context, null, 2));
     const owner = context.repo.owner;
     const repo = context.repo.repo;
     const actor = context.actor;
@@ -46,7 +46,7 @@ async function run() {
     }
 
     // Print our user, body, and issue number
-    console.log(`User: ${user} Body: ${body}`)
+    console.log(`User: ${user}, Body: ${body}`)
 
     // Check for string that triggers time check
     body = body.toLowerCase();
@@ -58,7 +58,7 @@ async function run() {
       );
       var question_arr = question.split(' ');
       person = question_arr[1].replace(/@/g, '');
-      person_info = (await tools.github.users.getByUsername({
+      person_info = (await tools.rest.users.getByUsername({
         username: person
       })).data;
 
@@ -111,7 +111,7 @@ async function run() {
         I hope that helps clarify the matter for you!
       `;
         console.log(responseMsg)
-        await tools.github.issues.createComment({
+        await tools.rest.issues.createComment({
           owner: owner,
           repo: repo,
           issue_number: issue_number,
@@ -124,7 +124,7 @@ async function run() {
         I can't look up the time in an undefined location.
       `;
         console.log(responseMsg)
-        await tools.github.issues.createComment({
+        await tools.rest.issues.createComment({
           owner: owner,
           repo: repo,
           issue_number: issue_number,
