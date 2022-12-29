@@ -59849,18 +59849,17 @@ async function run() {
     body = body.toLowerCase();
     if (body.includes('is') && body.includes('awake?')) {
       // If it does, get user info
-      /*
       var question = body.substring(
         body.lastIndexOf('is'),
         body.lastIndexOf('awake?')
       );
-      */
-      //var question_arr = question.split(' ');
-      //person = question_arr[1].replace(/@/g, '');
+      var question_arr = question.split(' ');
+      // remove whitespace and @ from the username
+      person = question_arr[1].trim().replace('@', '');
       //console.log(JSON.stringify(question_arr, null, 2));
-      //console.log(`found: ${person}!`);
+      console.log(`found: ${person}!`);
       person_info = (await tools.rest.users.getByUsername({
-        username: "abirismyname"
+        username: person
       })).data;
       console.log(JSON.stringify(person_info, null, 2));
       // Get the location specified in their profile
