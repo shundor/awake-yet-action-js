@@ -53,8 +53,12 @@ async function run() {
       // If it does, get user info
       var question = body.substring(
         body.lastIndexOf('is'),
-        body.lastIndexOf('awake?')
+        body.firstIndexOf('awake?')
       );
+      // get substring that starts with 'is' and ends with 'awake?'
+      console.log(`found: ${question}!`);
+      console.log(`body.substring(${body.lastIndexOf('is')}, ${body.firstIndexOf('awake?')})`);
+
       var question_arr = question.split(' ');
       // remove whitespace and @ from the username
       console.log(JSON.stringify(question_arr, null, 2));
